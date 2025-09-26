@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM HELPER</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            width: 60rem;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+        .dados {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            width: 50rem;
+            height: 12rem;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            transition: 0.2s ease-in-out;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #005ec2;
+        }
+        button, input, h1.resultado {
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            padding: 0;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input {
+            height: 100%;
+            padding-left: 5px;
+            border: 2px solid #ccc;
+        }
+        h1.resultado {
+            margin: 0;
+            text-align: center;
+            color: #333;
+            padding: 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ccc;
+        }
+        hr {
+            margin-top: 20px;
+            margin-bottom: 2px;
+            border-radius: 20px;
+            border: 2.5px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>DM HELPER</h1>
+    <p>O DM Helper é uma ferramenta essencial para mestres de RPG, projetada para facilitar a gestão de campanhas. Com ele, você pode calcular modificadores, rolagens de dados, definir classes de armaduras ou dificuldades entre outros.</p>
+    <section class="dados">
+        <input type="number" placeholder="quantidade"  id="input1">
+        <input type="number" placeholder="quantidade"  id="input2">
+        <input type="number" placeholder="quantidade"  id="input3">
+        <input type="number" placeholder="quantidade"  id="input4">
+        <input type="number" placeholder="quantidade"  id="input5">
+        <input type="number" placeholder="quantidade"  id="input6">
+        <input type="number" placeholder="quantidade" id="input7">
+        <button id="dado1">d4</button>
+        <button id="dado2">d6</button>
+        <button id="dado3">d8</button>
+        <button id="dado4">d10</button>
+        <button id="dado5">d12</button>
+        <button id="dado6">d20</button>
+        <button id="dado7">d100</button>
+        <input type="text" id="modificador1" placeholder="modificador">
+        <input type="text" id="modificador2" placeholder="modificador">
+        <input type="text" id="modificador3" placeholder="modificador">
+        <input type="text" id="modificador4" placeholder="modificador">
+        <input type="text" id="modificador5" placeholder="modificador">
+        <input type="text" id="modificador6" placeholder="modificador">
+        <input type="text" id="modificador7" placeholder="modificador">
+        <h1 class="resultado" id="resultado1">...</h1>
+        <h1 class="resultado" id="resultado2">...</h1>
+        <h1 class="resultado" id="resultado3">...</h1>
+        <h1 class="resultado" id="resultado4">...</h1>
+        <h1 class="resultado" id="resultado5">...</h1>
+        <h1 class="resultado" id="resultado6">...</h1>
+        <h1 class="resultado" id="resultado7">...</h1>
+        </section>
+        <hr>
+        <script>
+            const dados = [];
+            for (let i = 1; i <= 7; i++) {
+                const dado = document.getElementById(`dado${i}`);
+                dados.push(dado);
+            }
+            const inputs = [];
+            for (let i = 1; i <= 7; i++) {
+                const input = document.getElementById(`input${i}`);
+                inputs.push(input);
+            }
+            const resultados = [];
+            for (let i = 1; i <= 7; i++) {
+                const resultado = document.getElementById(`resultado${i}`);
+                resultados.push(resultado);
+            }
+            const modificadores = [];
+            for (let i = 1; i <= 7; i++) {
+                const modificador = document.getElementById(`modificador${i}`);
+                modificadores.push(modificador);
+            }
+            dados.forEach((dado, index) => {
+                dado.addEventListener('click', () => {
+                    const quantidade = parseInt(inputs[index].value) || 1;
+                    let lados;
+                    switch (index) {
+                        case 0: lados = 4; break;
+                        case 1: lados = 6; break;
+                        case 2: lados = 8; break;
+                        case 3: lados = 10; break;
+                        case 4: lados = 12; break;
+                        case 5: lados = 20; break;
+                        case 6: lados = 100; break;
+                    }
+                    let total = 0;
+                    for (let i = 0; i < quantidade; i++) {
+                        total += Math.floor(Math.random() * lados) + 1 + (parseInt(modificadores[index].value) || 0);
+                    }
+                    resultados[index].textContent = total;
+                });
+            });
+        </script>
+</body>
+</html>
