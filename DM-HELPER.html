@@ -1,0 +1,664 @@
+<!-- site para inspiração : https://bibliotecaelfica.org/2023/01/15/dd-5e-regras-basicas-dos-jogadores -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM HELPER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007BFF;
+            --primary-hover: #005ec2;
+            --border-color: #ccc;
+            --border-radius: 5px;
+            --text-color: #333;
+            --text-light: #555;
+            --bg-color: #f4f4f4;
+            --white: white;
+        }
+        
+        body {
+            font-family: "Ubuntu", sans-serif;
+            margin: 20px;
+            background-color: var(--bg-color);
+        }
+        
+        h1 { color: var(--text-color); }
+        
+        p {
+            width: 60rem;
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-light);
+        }
+        
+        /* Botões */
+        button, .iniciativa, .adicionartempo {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;    
+            transition: 0.2s ease-in-out;
+        }
+        
+        button:hover, .iniciativa:hover, .adicionartempo:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        /* Inputs */
+        input, .tempoinput, .iniciativainput, .inputdado {
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            box-sizing: border-box;
+            padding: 0 5px;
+        }
+        
+        .inputconvertor {
+            width: 150px;
+            height: 50px;
+            font-size: 18px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+        }
+
+        .resultadoconversao {
+            width: 41.4rem;
+            height: 3rem;
+            font-size: 22px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            color: var(--text-color);
+            display: flex;
+            border: 2px solid var(--border-color);
+            align-items: center;
+            justify-content: center;
+            background-color: var(--white);
+            margin: 0;
+        }
+
+        .sectionconvertor {
+            width: 42rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .inputdado {
+            width: 34%;
+            height: 100%;
+            font-size: 22px;
+            padding-left: 5px;
+        }
+
+        /* Flex containers */
+        section, .minisection, .sectionhorizontal {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sectionhorizontal {
+            width: 100%;
+            padding: 0;
+            margin-top: 12.5px;
+            align-items: flex-start;
+        }
+        
+        .tempomedio, .tempomenor, .vantagens, .iniciativagrandesection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .iniciativagrandesection {
+            align-items: flex-start;
+            gap: 0;
+        }
+        .tempopequeno {
+            flex-direction: row;
+        }
+        .labeltempo {
+            align-self: flex-start;
+        }
+        .inciativasectionmenor {
+            flex-direction: column; 
+            align-self: flex-start;
+        }
+        /* Outros */
+        .dados {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            width: 50rem;
+            height: 9rem;
+        }
+        
+        button.dadobutton, h1.resultado {
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #dadoiniciativa {
+            padding: 10px 15px;
+            font-size: 16px;
+            width: auto;
+            height: 6rem;
+        }
+        
+        h1.resultado {
+            margin: 0;
+            text-align: center;
+            border-radius: var(--border-radius);
+            color: var(--text-color);
+            display: flex;
+            border: 2px solid var(--border-color);
+            align-items: center;
+            justify-content: center;
+            background-color: var(--white);
+        }
+        
+        hr {
+            margin: 20px 0 2px;
+            border-radius: 20px;
+            border: 2.5px solid var(--border-color);
+        }
+        
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+        
+        label {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            line-height: 1.2;
+        }
+        
+        .dadosextra {
+            width: 43rem;
+            height: 5.5rem;
+            margin-top: 10px;
+            justify-content: flex-end;
+        }
+        
+        .vantagens {
+            width: 35%;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        .tempoinput {
+            width: 150px;
+            height: 40px;
+            font-size: 18px;
+            padding: 5px;
+        }
+        
+        .tempogrande {
+            width: 26rem;
+            height: 12rem;
+        }
+        
+        .adicionartempo {
+            padding: 10px 15px;
+            font-size: 16px;
+            width: auto;
+            height: 80%;
+            align-self: flex-end;
+        }
+        
+        .tempotext {
+            font-size: 24px;
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+        
+        .iniciativainput {
+            width: 9rem;
+            height: 3rem;
+            font-size: 22px;
+            vertical-align: top;
+        }
+        
+        #nomeiniciativa { width: 20rem; }
+        
+        .iniciativa {
+            width: auto;
+            height: 3rem;
+            font-size: 16px;
+            padding: 0 10px;
+            vertical-align: top;
+        }
+        
+        #listainiciativa {
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            width: 69.5%;
+            min-height: 4.4rem;
+            flex-direction: column;
+            overflow-y: auto;
+            background-color: var(--white);
+            padding: 10px;
+            align-items: flex-start;
+        }
+        
+        #proximoiniciativa {
+            width: 25%;
+            height: 5.8rem;
+            font-size: 16px;
+            padding: 0 10px;
+            vertical-align: top;
+            align-self: flex-start;
+        }
+
+        .iteminiciativa {
+            width: 100%;
+            background-color: var(--white);
+        }
+        
+        .current-turn {
+            border-radius: var(--border-radius);
+            background-color: var(--primary-hover);
+            color: var(--white);
+            font-weight: bold;
+        }
+        .inciativasectionmenor {
+            flex-direction: column; 
+            align-self: flex-start;
+        }
+        .iniciativamaior {
+            display: flex;
+            gap: 10px;
+        }
+        .iniciativasection {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .lista {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="fundo"></canvas>
+    <h1>DUNGEON MASTER HELPER</h1>
+    <p>O DM Helper é uma ferramenta para mestres de RPG, projetada para facilitar a gestão de campanhas. Com ele, você pode calcular modificadores, rolagens de dados, definir classes de armaduras ou dificuldades entre outras funcionalidades.</p>
+    
+     <!-- #region ===== Dados ===== -->
+    <hr>
+    <h1>DADOS</h1>
+    <section class="dados">
+        <button class="dadobutton" id="dado1">d4</button>
+        <button class="dadobutton" id="dado2">d6</button>
+        <button class="dadobutton" id="dado3">d8</button>
+        <button class="dadobutton" id="dado4">d10</button>
+        <button class="dadobutton" id="dado5">d12</button>
+        <button class="dadobutton" id="dado6">d20</button>
+        <button class="dadobutton" id="dado7">d100</button>
+        <h1 class="resultado" id="resultado1">...</h1>
+        <h1 class="resultado" id="resultado2">...</h1>
+        <h1 class="resultado" id="resultado3">...</h1>
+        <h1 class="resultado" id="resultado4">...</h1>
+        <h1 class="resultado" id="resultado5">...</h1>
+        <h1 class="resultado" id="resultado6">...</h1>
+        <h1 class="resultado" id="resultado7">...</h1>
+        </section>
+        <section class="dadosextra">
+        <input type="number" placeholder="quantidade" class="inputdado" id="input">
+        <input type="text" id="modificador" class="inputdado" placeholder="modificador">
+        <section class="vantagens">
+        <section class="minisection"><label for="normal">Normal: </label>
+        <input type="radio" class="checkbox" id="normal" name="tipo" checked></section>
+        <section class="minisection"><label for="vantagem">Vantagem: </label>
+        <input type="radio" class="checkbox" id="vantagem" name="tipo"></section>
+        <section class="minisection"><label for="desvantagem">Desvantagem: </label>
+        <input type="radio" class="checkbox" id="desvantagem" name="tipo"></section>
+        </section>
+        </section>
+        <hr>
+    <!-- #endregion -->  
+     <!-- #region ===== tempo dos Turnos ===== -->
+    <h1>TEMPO DOS TURNOS</h1>
+    <p>Em D&D, uma mecanica essencial é que cada turno em combate tem a duração de 6 segundos, isso é essencial levando em conta que há magias e ataques que duram determinado tempo ou que precisam ser antecipadas por um certo período, como 1 minuto (10 turnos) de concentração para usar uma magia específica.</p>
+    
+    <section class="tempogrande">
+    <section class="tempomedio">
+        <section class="tempopequeno">
+            <section class="tempomenor">
+                <label for="tempoatual" class="labeltempo">Tempo atual</label>
+                <input class="tempoinput" type="time" id="tempoatual" step="1" value="00:00:00">
+            </section>
+            <h1 class="tempotext">:</h1>
+            <h1 class="tempotext" id="mostrartempoatual">00:00:00</h1>
+        </section>
+        <section class="tempopequeno">
+            <section class="tempomenor">
+                <label for="temporestante" class="labeltempo">Tempo restante</label>
+                <input class="tempoinput" type="time" id="temporestante" step="1" value="00:00:00">
+            </section>
+            <h1 class="tempotext">:</h1>
+            <h1 class="tempotext" id="mostrartemporestante">00:00:00</h1>
+        </section>
+    </section>
+    
+    <button class="adicionartempo" id="adicionarturno">Adicionar 1 turno</button>
+    </section>
+    <hr>
+    <!-- #endregion -->
+     <!-- #region ===== Lista de Iniciativa ===== -->
+    <h1>LISTA DE INICIATIVA</h1>
+    <p>Em D&D, a iniciativa determina a ordem em que os personagens e criaturas, o mestre pode usar essa ferramenta para fazer a lista para organizar a ordem dos turnos durante o combate.</p>
+    <section class="iniciativamaior">
+    <section class="iniciativagrandesection">
+        <section class="iniciativasection">
+        <input type="number" class="iniciativainput" id="iniciativanumber" placeholder="iniciativa">
+        <input type="text" class="iniciativainput" id="nomeiniciativa" placeholder="nome do jogador/personagem">
+        <button class="iniciativa" id="enviariniciativa">Adicionar</button>
+        <button class="iniciativa" id="limpariniciativa">Limpar</button>
+        </section>
+        <section class="sectionhorizontal">
+            <section class="lista" id="listainiciativa"></section>
+            <button id="proximoiniciativa">Proximo</button>
+        </section>
+        
+    </section>
+    <section class="inciativasectionmenor">
+        <button id="dadoiniciativa">d20 de iniciativa</button>
+        <input type="number" class="iniciativainput" id="modificadoriniciativa" placeholder="modificador"> 
+    </section>
+    </section>
+    <hr>
+    <!-- #endregion -->
+     <!-- #region ===== Convertor de Moedas ===== -->
+    <h1>CONVERTOR DE MOEDAS</h1>
+    <p>No D&D existem diversas moedas, como Ouro (GP ou PO), Platina (PP) e prata (SP), esta ferramenta te ajuda a converter com facilidade essas diferentes moedas.</p>
+    
+    <section class="sectionconvertor">
+        <input type="number" placeholder="quantidade" class="inputconvertor" id="inputmoeda">
+        <h1>de</h1>
+        <select class="inputconvertor" id="moedainicial">
+            <option value="PP">Platina (PP)</option>
+            <option value="GP" selected>Ouro (GP)</option>
+            <option value="EP">Eletro (EP)</option>
+            <option value="SP">Prata (SP)</option>
+            <option value="CP">Cobre (CP)</option>
+        </select>
+        <h1>para</h1>
+        <select class="inputconvertor" id="moedafinal">
+            <option value="PP">Platina (PP)</option>
+            <option value="GP" selected>Ouro (GP)</option>
+            <option value="EP">Eletro (EP)</option>
+            <option value="SP">Prata (SP)</option>
+            <option value="CP">Cobre (CP)</option>
+        </select>
+        <button class="iniciativa" id="convertermoeda">Converter</button>
+    </section>
+        <h1 class="resultadoconversao">...</h1>
+    <!-- #endregion -->
+    
+    <script>
+        //#region ===== dados =====
+        const normal = document.getElementById('normal');
+        const vantagem = document.getElementById('vantagem');
+        const desvantagem = document.getElementById('desvantagem');
+        
+        const dados = [];
+        for (let i = 1; i <= 7; i++) {
+            const dado = document.getElementById(`dado${i}`);
+            dados.push(dado);
+        }
+        const input1 = document.getElementById('input');
+        const input2 = document.getElementById('modificador');
+        const resultados = [];
+        for (let i = 1; i <= 7; i++) {
+            const resultado = document.getElementById(`resultado${i}`);
+            resultados.push(resultado);
+        }
+
+        dados.forEach((dado, index) => {
+            dado.addEventListener('click', () => {
+                const quantidade = input1.value || 1;
+                let lados;
+                switch (index) {
+                    case 0: lados = 4; break;
+                    case 1: lados = 6; break;
+                    case 2: lados = 8; break;
+                    case 3: lados = 10; break;
+                    case 4: lados = 12; break;
+                    case 5: lados = 20; break;
+                    case 6: lados = 100; break;
+                }
+                if (normal.checked) {
+                    let total = 0;
+                    for (let i = 0; i < quantidade; i++) {
+                        total += (Math.floor(Math.random() * lados) + 1 + (parseInt(input2.value) || 0));
+                    }
+                    resultados[index].textContent = total;
+                    return;
+                }
+                else if (vantagem.checked) {
+                    let total = 0;
+                    for (let i = 0; i < quantidade; i++) {
+                        const roll1 = Math.floor(Math.random() * lados) + 1;
+                        const roll2 = Math.floor(Math.random() * lados) + 1;
+                        total += (Math.max(roll1, roll2) + (parseInt(input2.value) || 0));
+                    }
+                    resultados[index].textContent = total;
+                    return;
+                }
+                else if (desvantagem.checked) {
+                    let total = 0;
+                    for (let i = 0; i < quantidade; i++) {
+                        const roll1 = Math.floor(Math.random() * lados) + 1;
+                        const roll2 = Math.floor(Math.random() * lados) + 1;
+                        total += (Math.min(roll1, roll2) + (parseInt(input2.value) || 0));
+                    }
+                    resultados[index].textContent = total;
+                    return;
+                }
+            });
+        });
+        //#endregion
+        //#region ===== tempo dos turnos =====
+        const tempoatual = document.getElementById('tempoatual');
+        const temporestante = document.getElementById('temporestante');
+        const mostrartempoatual = document.getElementById('mostrartempoatual');
+        const mostrartemporestante = document.getElementById('mostrartemporestante');
+        const adicionarturno = document.getElementById('adicionarturno');
+
+        tempoatual.addEventListener('change', () => {
+            const valor = tempoatual.value;
+            mostrartempoatual.textContent = valor ? valor : '00:00:00';
+        });
+        temporestante.addEventListener('change', () => {
+            const valor = temporestante.value;
+            mostrartemporestante.textContent = valor ? valor : '00:00:00';
+        });
+        adicionarturno.addEventListener('click', () => {
+            let [horas, minutos, segundos] = (tempoatual.value || '00:00:00').split(':').map(Number);
+            segundos += 6;
+            if (segundos >= 60) {
+                segundos -= 60;
+                minutos += 1;
+            }
+            if (minutos >= 60) {
+                minutos -= 60;
+                horas += 1;
+            }
+            horas = horas % 24; // Mantém as horas dentro do formato de 24 horas
+            const novoTempo = [horas, minutos, segundos].map(num => String(num).padStart(2, '0')).join(':');
+            tempoatual.value = novoTempo;
+            mostrartempoatual.textContent = novoTempo;
+
+            let [restHoras, restMinutos, restSegundos] = (temporestante.value || '00:00:00').split(':').map(Number);
+            restSegundos -= 6;
+            if (restSegundos < 0) {
+                restSegundos += 60;
+                restMinutos -= 1;
+            }
+            if (restMinutos < 0) {
+                restMinutos += 60;
+                restHoras -= 1;
+            }
+            if (restHoras < 0) {
+                restHoras = 0;
+                restMinutos = 0;
+                restSegundos = 0;
+            }
+            const novoTempoRestante = [restHoras, restMinutos, restSegundos].map(num => String(num).padStart(2, '0')).join(':');
+            if (novoTempoRestante === '00:00:00') {
+                mostrartemporestante.style.color = 'red';
+            } else {
+                mostrartemporestante.style.color = '#333';
+            }
+            temporestante.value = novoTempoRestante;
+            mostrartemporestante.textContent = novoTempoRestante;
+        });
+        //#endregion
+        //#region ===== lista de iniciativa =====
+        const enviariniciativa = document.getElementById('enviariniciativa');
+        const iniciativanumber = document.getElementById('iniciativanumber');
+        const nomeiniciativa = document.getElementById('nomeiniciativa');
+        const limpariniciativa = document.getElementById('limpariniciativa');
+        const proximoiniciativa = document.getElementById('proximoiniciativa');
+        let contadorIniciativa = 0;
+
+        enviariniciativa.addEventListener('click', () => {
+            const iniciativa = parseInt(iniciativanumber.value);
+            const nome = nomeiniciativa.value.trim();
+            if (isNaN(iniciativa) || nome === '') {
+                alert('Por favor, insira um valor válido para iniciativa e nome.');
+                return;
+            }
+            const listainiciativa = document.getElementById('listainiciativa');
+            const novoItem = document.createElement('div');
+            novoItem.className = 'iteminiciativa';
+            novoItem.textContent = `${String(iniciativa).padStart(2, '0')} - ${nome}`;
+            novoItem.style.padding = '5px 0';
+            listainiciativa.appendChild(novoItem);
+            // Ordenar a lista
+            const itens = Array.from(listainiciativa.children);
+            itens.sort((a, b) => {
+                const iniA = parseInt(a.textContent.split(' - ')[0]);
+                const iniB = parseInt(b.textContent.split(' - ')[0]);
+                return iniB - iniA;
+            });
+            listainiciativa.innerHTML = '';
+            itens.forEach(item => listainiciativa.appendChild(item));
+            iniciativanumber.value = '';
+            nomeiniciativa.value = '';
+        });
+
+        limpariniciativa.addEventListener('click', () => {
+            const listainiciativa = document.getElementById('listainiciativa');
+            listainiciativa.innerHTML = '';
+        });
+
+        proximoiniciativa.addEventListener('click', () => {
+            const itens = Array.from(document.getElementById('listainiciativa').children);
+            if (itens.length === 0) return;
+            
+            const currentIndex = itens.findIndex(item => item.classList.contains('current-turn'));
+            
+            if (currentIndex !== -1) {
+                itens[currentIndex].classList.remove('current-turn');
+            }
+            
+            const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % itens.length;
+            itens[nextIndex].classList.add('current-turn');
+        });
+
+        const dadoiniciativa = document.getElementById('dadoiniciativa');
+        const modificadoriniciativa = document.getElementById('modificadoriniciativa');
+        dadoiniciativa.addEventListener('click', () => {
+            const roll = Math.floor(Math.random() * 20) + 1;
+            const mod = parseInt(modificadoriniciativa.value) || 0;
+            const total = roll + mod;
+            iniciativanumber.value = total;
+        });
+        //#endregion
+        //#region ===== fundo animado =====
+        const canvas = document.getElementById('fundo');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const rects = [];
+        for (let i = 0; i < 50; i++) {
+            const size = Math.random() * 75 + 20;
+            rects.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 2,
+                vy: (Math.random() - 0.5) * 2,
+                size: size,
+                color: `rgba(0, 0, 0, ${Math.random() * 0.1 + 0.1})`
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            rects.forEach(rect => {
+                rect.x += rect.vx;
+                rect.y += rect.vy;
+
+                if (rect.x < -rect.size) rect.x = canvas.width;
+                if (rect.x > canvas.width) rect.x = -rect.size;
+                if (rect.y < -rect.size) rect.y = canvas.height;
+                if (rect.y > canvas.height) rect.y = -rect.size;
+
+                ctx.fillStyle = rect.color;
+                ctx.fillRect(rect.x, rect.y, rect.size, rect.size);
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+        //#endregion
+        //#region ===== convertor de moedas =====
+        const quantidade = document.getElementById('inputmoeda');
+        const moedainicial = document.getElementById('moedainicial');
+        const moedafinal = document.getElementById('moedafinal');
+        const convertermoeda = document.getElementById('convertermoeda');
+
+        convertermoeda.addEventListener('click', () => {
+            const valor = parseFloat(quantidade.value);
+            if (isNaN(valor) || valor < 0) {
+                alert('Por favor, insira uma quantidade válida.');
+                return;
+            }
+            const taxas = {
+                'PP': 10,   // 1 PP = 10 GP
+                'GP': 1,    // 1 GP = 1 GP
+                'EP': 0.5,  // 1 EP = 0.5 GP
+                'SP': 0.1,  // 1 SP = 0.1 GP
+                'CP': 0.01  // 1 CP = 0.01 GP
+            };
+            const valorEmGP = valor * taxas[moedainicial.value];
+            const valorConvertido = valorEmGP / taxas[moedafinal.value];
+            const resultadoElemento = document.querySelector('.resultadoconversao');
+            resultadoElemento.textContent = `${valor} ${moedainicial.options[moedainicial.selectedIndex].text} = ${valorConvertido.toFixed(2)} ${moedafinal.options[moedafinal.selectedIndex].text}`;
+        });
+    </script>
+</body>
+
+</html>
