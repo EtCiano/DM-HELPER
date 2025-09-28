@@ -300,7 +300,7 @@
         
         #npcinimigosection   {
             margin-top: 10px;
-            min-height: 24rem;
+            min-height: 25rem;
             flex-direction: column;
             overflow-y: auto;
             display: grid;
@@ -324,7 +324,8 @@
         }
         .inputficha {
             margin: 5px;
-            width: 100%;
+            margin-bottom: 15px;
+            width: 97%;
             height: 2rem;
             font-size: 16px;
             padding: 0 5px;
@@ -335,7 +336,7 @@
         .inputfichasubclasse {
             margin: 5px;
             font-size: 12px;
-            width: 100%;
+            width: 93%;
             height: 2rem;
             padding: 0 5px;
             border: none;
@@ -345,7 +346,7 @@
         .inputfichasubclasse1 {
             margin: 5px;
             font-size: 12px;
-            width: 100%;
+            width: 93%;
             height: 2rem;
             padding: 0 5px;
             border: none;
@@ -355,7 +356,7 @@
         .inputfichasubclasse2 {
             margin: 5px;
             font-size: 12px;
-            width: 100%;
+            width: 93%;
             height: 2rem;
             padding: 0 5px;
             border: none;
@@ -395,6 +396,14 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
+        }
+        #deleteficha, .deleteficha {
+            width: 20px;
+            height: 20px;
+            margin-bottom: 15px;
+            margin-right: 15px;
+            cursor: pointer;
+            float: right;
         }
     </style>
 </head>
@@ -495,7 +504,10 @@
      <button id="limparnpcs" class="iniciativa">Limpar</button>
      <section id="npcinimigosection">
         <div class="npcinimigo">
+            <section>
             <input type="text" class="inputficha" id="nome" placeholder="Nome do personagem">
+            <img id="deleteficha" src="https://images.icon-icons.com/37/PNG/512/delete_4219.png">
+            </section>
             <section id="gridficha">
                 <p id="pficha">Raça:</p>
                 <p id="pficha">Classe:</p>
@@ -541,8 +553,10 @@
                 <p id="pficha">Desafio (XP):</p>
                 <p id="pficha">Linguagens:</p>
             </section>
+            <section id="gridficha1">
             <input type="text" class="inputficha1" placeholder=".....">
             <input type="text" class="inputficha1" placeholder=".....">
+                </section>
         </div>
      </section>
      <!-- #endregion -->
@@ -819,67 +833,85 @@
         //#endregion
         //#region ===== NPCs e Inimigos =====
         const limparnpcs = document.getElementById('limparnpcs');
-        limparnpcs.addEventListener('click', () => {
-            const containerNPC = document.getElementById('npcinimigosection');
-            containerNPC.innerHTML = '';
-        });
         const botaoAdicionarNPC = document.getElementById('buttoniniciativa');
         const containerNPC = document.getElementById('npcinimigosection');
+        const deleteficha = document.getElementById('deleteficha');
+
+        deleteficha.addEventListener('click', () => {
+            deleteficha.parentElement.parentElement.remove();
+        });
+
+        limparnpcs.addEventListener('click', () => {
+            containerNPC.innerHTML = '';
+        });
+
         if (botaoAdicionarNPC && containerNPC) {
             botaoAdicionarNPC.addEventListener('click', () => {
-            const novoNPC = document.createElement('div');
-            novoNPC.className = 'npcinimigo';
-            novoNPC.innerHTML = `
-                <input type="text" class="inputficha" id="nome" placeholder="Nome do personagem">
-            <section id="gridficha">
-                <p id="pficha">Raça:</p>
-                <p id="pficha">Classe:</p>
-                <p id="pficha">Nível:</p>
-            </section>
-            <section id="gridficha">
-            <input type="text" class="inputfichasubclasse" placeholder=".....">
-            <input type="text" class="inputfichasubclasse" placeholder=".....">
-            <input type="text" class="inputfichasubclasse" placeholder=".....">
-            </section>
-            <section id="gridficha">
-                <p id="pficha">HP:</p>
-                <p id="pficha">CA:</p>
-                <p id="pficha">Deslocamento:</p>
-            </section>
-            <section id="gridficha">
-            <input type="text" class="inputfichasubclasse" placeholder=".....">
-            <input type="text" class="inputfichasubclasse" placeholder=".....">
-            <input type="text" class="inputfichasubclasse2" placeholder="......">
-            </section>
-            <hr id="hrnpc">
-            <section id="gridficha">
-                <p id="pficha">Str:</p>
-                <p id="pficha">Dex:</p>
-                <p id="pficha">Con:</p>
-            </section>
-            <section id="gridficha">
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
-            </section>
-            <section id="gridficha">
-                <p id="pficha">Int:</p>
-                <p id="pficha">Wis:</p>
-                <p id="pficha">Cha:</p>
-            </section>
-            <section id="gridficha">
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
-            </section>
-            <section id="gridficha1">
-                <p id="pficha">Desafio (XP):</p>
-                <p id="pficha">Linguagens:</p>
-            </section>
-            <input type="text" class="inputficha1" placeholder=".....">
-            <input type="text" class="inputficha1" placeholder=".....">
-            `;
-            containerNPC.appendChild(novoNPC);});
+                const novoNPC = document.createElement('div');
+                novoNPC.className = 'npcinimigo';
+                novoNPC.innerHTML = `
+                    <section>
+                        <input type="text" class="inputficha" placeholder="Nome do personagem">
+                        <img class="deleteficha" src="https://images.icon-icons.com/37/PNG/512/delete_4219.png">
+                    </section>
+                    <section id="gridficha">
+                        <p id="pficha">Raça:</p>
+                        <p id="pficha">Classe:</p>
+                        <p id="pficha">Nível:</p>
+                    </section>
+                    <section id="gridficha">
+                        <input type="text" class="inputfichasubclasse" placeholder=".....">
+                        <input type="text" class="inputfichasubclasse" placeholder=".....">
+                        <input type="text" class="inputfichasubclasse" placeholder=".....">
+                    </section>
+                    <section id="gridficha">
+                        <p id="pficha">HP:</p>
+                        <p id="pficha">CA:</p>
+                        <p id="pficha">Deslocamento:</p>
+                    </section>
+                    <section id="gridficha">
+                        <input type="text" class="inputfichasubclasse" placeholder=".....">
+                        <input type="text" class="inputfichasubclasse" placeholder=".....">
+                        <input type="text" class="inputfichasubclasse2" placeholder="......">
+                    </section>
+                    <hr id="hrnpc">
+                    <section id="gridficha">
+                        <p id="pficha">Str:</p>
+                        <p id="pficha">Dex:</p>
+                        <p id="pficha">Con:</p>
+                    </section>
+                    <section id="gridficha">
+                        <input type="text" class="inputfichasubclasse1" placeholder="...">
+                        <input type="text" class="inputfichasubclasse1" placeholder="...">
+                        <input type="text" class="inputfichasubclasse1" placeholder="...">
+                    </section>
+                    <section id="gridficha">
+                        <p id="pficha">Int:</p>
+                        <p id="pficha">Wis:</p>
+                        <p id="pficha">Cha:</p>
+                    </section>
+                    <section id="gridficha">
+                        <input type="text" class="inputfichasubclasse1" placeholder="...">
+                        <input type="text" class="inputfichasubclasse1" placeholder="...">
+                        <input type="text" class="inputfichasubclasse1" placeholder="...">
+                    </section>
+                    <section id="gridficha1">
+                        <p id="pficha">Desafio (XP):</p>
+                        <p id="pficha">Linguagens:</p>
+                    </section>
+                    <section id="gridficha1">
+                        <input type="text" class="inputficha1" placeholder=".....">
+                        <input type="text" class="inputficha1" placeholder=".....">
+                    </section>
+                `;
+                
+                const deleteBtn = novoNPC.querySelector('.deleteficha');
+                deleteBtn.addEventListener('click', () => {
+                    novoNPC.remove();
+                });
+                
+                containerNPC.appendChild(novoNPC);
+            });
         }
         //#endregion
     </script>
