@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DM HELPER</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/6545/6545894.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
@@ -108,7 +109,7 @@
             margin-top: 12.5px;
             align-items: flex-start;
         }
-        
+
         .tempomedio, .tempomenor, .vantagens, .iniciativagrandesection {
             display: flex;
             flex-direction: column;
@@ -296,12 +297,111 @@
         .lista {
             display: flex;
         }
+        
+        #npcinimigosection   {
+            margin-top: 10px;
+            min-height: 24rem;
+            flex-direction: column;
+            overflow-y: auto;
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
+            background-color: var(--white);
+            padding: 10px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+        }
+        
+        .npcinimigo {
+            width: 100%;
+            height: 100%;
+            border: 2px solid;
+            background-color: var(--white);
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .inputficha {
+            margin: 5px;
+            width: 100%;
+            height: 2rem;
+            font-size: 16px;
+            padding: 0 5px;
+            border: none;
+            border-radius: 0;
+            box-sizing: border-box;
+        }
+        .inputfichasubclasse {
+            margin: 5px;
+            font-size: 12px;
+            width: 100%;
+            height: 2rem;
+            padding: 0 5px;
+            border: none;
+            border-radius: 0;
+            box-sizing: border-box;
+        }
+        .inputfichasubclasse1 {
+            margin: 5px;
+            font-size: 12px;
+            width: 100%;
+            height: 2rem;
+            padding: 0 5px;
+            border: none;
+            border-radius: 0;
+            box-sizing: border-box;
+        }
+        .inputfichasubclasse2 {
+            margin: 5px;
+            font-size: 12px;
+            width: 100%;
+            height: 2rem;
+            padding: 0 5px;
+            border: none;
+            border-radius: 0;
+            box-sizing: border-box;
+        }
+        hr#hrnpc {
+            margin: 0;
+            margin-bottom: 10px;
+            border: 1.5px solid var(--border-color);
+        }
+        #pficha {
+            text-align: center;
+            display: inline;
+            font-weight: bold;
+            width: auto;
+            text-align: start;
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+        .inputficha1 {
+            height: 2rem;
+            font-size: 12px;
+            margin: 5px;
+            border: none;
+            border-radius: 0;
+            box-sizing: border-box;
+        }
+        #gridficha {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        #gridficha1 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
     <canvas id="fundo"></canvas>
     <h1>DUNGEON MASTER HELPER</h1>
-    <p>O DM Helper é uma ferramenta para mestres de RPG, projetada para facilitar a gestão de campanhas. Com ele, você pode calcular modificadores, rolagens de dados, definir classes de armaduras ou dificuldades entre outras funcionalidades.</p>
+    <p>O DM Helper é uma ferramenta para mestres de RPG, projetada para facilitar a gestão de campanhas. Com ele, você pode calcular modificadores, rolagens de dados, definir iniciativas entre outras funcionalidades.</p>
     
      <!-- #region ===== Dados ===== -->
     <hr>
@@ -324,7 +424,7 @@
         </section>
         <section class="dadosextra">
         <input type="number" placeholder="quantidade" class="inputdado" id="input">
-        <input type="text" id="modificador" class="inputdado" placeholder="modificador">
+        <input type="number" id="modificador" class="inputdado" placeholder="modificador">
         <section class="vantagens">
         <section class="minisection"><label for="normal">Normal: </label>
         <input type="radio" class="checkbox" id="normal" name="tipo" checked></section>
@@ -388,6 +488,64 @@
     </section>
     <hr>
     <!-- #endregion -->
+     <!-- #region ===== Inimigos e/ou NPCs ===== --> 
+     <h1>INIMIGOS E NPCS</h1>
+     <p>Mantenha a manutenção e a organização dos NPCs e Inimigos do jogo usando essa ferramenta</p>
+     <button id="buttoniniciativa" class="iniciativa">Adicionar NPC ou Inimigo</button>
+     <button id="limparnpcs" class="iniciativa">Limpar</button>
+     <section id="npcinimigosection">
+        <div class="npcinimigo">
+            <input type="text" class="inputficha" id="nome" placeholder="Nome do personagem">
+            <section id="gridficha">
+                <p id="pficha">Raça:</p>
+                <p id="pficha">Classe:</p>
+                <p id="pficha">Nível:</p>
+            </section>
+            <section id="gridficha">
+            <input type="text" class="inputfichasubclasse" placeholder=".....">
+            <input type="text" class="inputfichasubclasse" placeholder=".....">
+            <input type="text" class="inputfichasubclasse" placeholder=".....">
+            </section>
+            <section id="gridficha">
+                <p id="pficha">HP:</p>
+                <p id="pficha">CA:</p>
+                <p id="pficha">Deslocamento:</p>
+            </section>
+            <section id="gridficha">
+            <input type="text" class="inputfichasubclasse" placeholder=".....">
+            <input type="text" class="inputfichasubclasse" placeholder=".....">
+            <input type="text" class="inputfichasubclasse2" placeholder="......">
+            </section>
+            <hr id="hrnpc">
+            <section id="gridficha">
+                <p id="pficha">Str:</p>
+                <p id="pficha">Dex:</p>
+                <p id="pficha">Con:</p>
+            </section>
+            <section id="gridficha">
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+            </section>
+            <section id="gridficha">
+                <p id="pficha">Int:</p>
+                <p id="pficha">Wis:</p>
+                <p id="pficha">Cha:</p>
+            </section>
+            <section id="gridficha">
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+            </section>
+            <section id="gridficha1">
+                <p id="pficha">Desafio (XP):</p>
+                <p id="pficha">Linguagens:</p>
+            </section>
+            <input type="text" class="inputficha1" placeholder=".....">
+            <input type="text" class="inputficha1" placeholder=".....">
+        </div>
+     </section>
+     <!-- #endregion -->
      <!-- #region ===== Convertor de Moedas ===== -->
     <h1>CONVERTOR DE MOEDAS</h1>
     <p>No D&D existem diversas moedas, como Ouro (GP ou PO), Platina (PP) e prata (SP), esta ferramenta te ajuda a converter com facilidade essas diferentes moedas.</p>
@@ -414,7 +572,7 @@
     </section>
         <h1 class="resultadoconversao">...</h1>
     <!-- #endregion -->
-    
+     
     <script>
         //#region ===== dados =====
         const normal = document.getElementById('normal');
@@ -609,8 +767,8 @@
             rects.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 2,
-                vy: (Math.random() - 0.5) * 2,
+                vx: (Math.random() - 0.5),
+                vy: (Math.random() - 0.5),
                 size: size,
                 color: `rgba(0, 0, 0, ${Math.random() * 0.1 + 0.1})`
             });
@@ -658,6 +816,72 @@
             const resultadoElemento = document.querySelector('.resultadoconversao');
             resultadoElemento.textContent = `${valor} ${moedainicial.options[moedainicial.selectedIndex].text} = ${valorConvertido.toFixed(2)} ${moedafinal.options[moedafinal.selectedIndex].text}`;
         });
+        //#endregion
+        //#region ===== NPCs e Inimigos =====
+        const limparnpcs = document.getElementById('limparnpcs');
+        limparnpcs.addEventListener('click', () => {
+            const containerNPC = document.getElementById('npcinimigosection');
+            containerNPC.innerHTML = '';
+        });
+        const botaoAdicionarNPC = document.getElementById('buttoniniciativa');
+        const containerNPC = document.getElementById('npcinimigosection');
+        if (botaoAdicionarNPC && containerNPC) {
+            botaoAdicionarNPC.addEventListener('click', () => {
+            const novoNPC = document.createElement('div');
+            novoNPC.className = 'npcinimigo';
+            novoNPC.innerHTML = `
+                <input type="text" class="inputficha" id="nome" placeholder="Nome do personagem">
+            <section id="gridficha">
+                <p id="pficha">Raça:</p>
+                <p id="pficha">Classe:</p>
+                <p id="pficha">Nível:</p>
+            </section>
+            <section id="gridficha">
+            <input type="text" class="inputfichasubclasse" placeholder=".....">
+            <input type="text" class="inputfichasubclasse" placeholder=".....">
+            <input type="text" class="inputfichasubclasse" placeholder=".....">
+            </section>
+            <section id="gridficha">
+                <p id="pficha">HP:</p>
+                <p id="pficha">CA:</p>
+                <p id="pficha">Deslocamento:</p>
+            </section>
+            <section id="gridficha">
+            <input type="text" class="inputfichasubclasse" placeholder=".....">
+            <input type="text" class="inputfichasubclasse" placeholder=".....">
+            <input type="text" class="inputfichasubclasse2" placeholder="......">
+            </section>
+            <hr id="hrnpc">
+            <section id="gridficha">
+                <p id="pficha">Str:</p>
+                <p id="pficha">Dex:</p>
+                <p id="pficha">Con:</p>
+            </section>
+            <section id="gridficha">
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+            </section>
+            <section id="gridficha">
+                <p id="pficha">Int:</p>
+                <p id="pficha">Wis:</p>
+                <p id="pficha">Cha:</p>
+            </section>
+            <section id="gridficha">
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+            </section>
+            <section id="gridficha1">
+                <p id="pficha">Desafio (XP):</p>
+                <p id="pficha">Linguagens:</p>
+            </section>
+            <input type="text" class="inputficha1" placeholder=".....">
+            <input type="text" class="inputficha1" placeholder=".....">
+            `;
+            containerNPC.appendChild(novoNPC);});
+        }
+        //#endregion
     </script>
 </body>
 
