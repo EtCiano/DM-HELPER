@@ -39,7 +39,7 @@
         /* Botões */
         button, .iniciativa, .adicionartempo {
             background-color: var(--primary-color);
-            color: var(--white);
+            color: white;
             border: none;
             border-radius: var(--border-radius);
             cursor: pointer;    
@@ -56,13 +56,17 @@
             border-radius: var(--border-radius);
             box-sizing: border-box;
             padding: 0 5px;
+            background-color: var(--white);
+            color: var(--text-color)
         }
         
         .inputconvertor {
             width: 150px;
             height: 50px;
             font-size: 18px;
+            color: var(--text-color);
             border: 2px solid var(--border-color);
+            background-color: var(--white);
             border-radius: var(--border-radius);
         }
 
@@ -194,6 +198,7 @@
         }
         
         label {
+            color: var(--text-color);
             font-size: 20px;
             display: flex;
             align-items: center;
@@ -236,7 +241,7 @@
         .tempotext {
             font-size: 24px;
             color: var(--text-color);
-            margin-bottom: 0;
+            margin-top: 3rem;
         }
         
         .iniciativainput {
@@ -278,14 +283,15 @@
         }
 
         .iteminiciativa {
-            width: 100%;
+            width: 97.5%;
+            color: var(--text-color);
             background-color: var(--white);
         }
         
         .current-turn {
             border-radius: var(--border-radius);
             background-color: var(--primary-hover);
-            color: var(--white);
+            color: var(--text-color);
             font-weight: bold;
         }
         .inciativasectionmenor {
@@ -312,7 +318,7 @@
             overflow-y: auto;
             display: grid;
             gap: 10px;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             padding: 10px;
             border: 4px solid var(--border-color);
             border-radius: var(--border-radius);
@@ -340,7 +346,7 @@
             box-sizing: border-box;
         }
         .inputfichasubclasse {
-            font-size: 12px;
+            font-size: 14px;
             width: 93%;
             height: 2rem;
             padding: 0 5px;
@@ -350,7 +356,7 @@
         }
         .inputfichasubclasse1 {
             border: none;
-            font-size: 12px;
+            font-size: 14px;
             width: 30%;
             height: 2rem;
             padding: 0 5px;
@@ -370,12 +376,12 @@
             text-align: start;
             margin: 0;
             padding: 0;
-            font-size: 12px;
+            font-size: 14px;
             color: var(--text-light);
         }
         .inputficha1 {
             height: 2rem;
-            font-size: 12px;
+            font-size: 14px;
             border: none;
             border-radius: 0;
             box-sizing: border-box;
@@ -418,17 +424,28 @@
         .modificadorficha {
             width: 20px;
             height: auto;
-            font-size: 12px;
+            font-size: 14px;
             text-align: center;
             margin: 0;
             padding: 0;
             color: var(--text-color);
         }
+        .deleteficha {
+            filter: var(--filter);
+        }
     </style>
 </head>
 <body>
     <canvas id="fundo"></canvas>
-    <h1>DUNGEON MASTER HELPER</h1>
+    <section>
+        <h1>DUNGEON MASTER HELPER</h1>
+        <section id="modoescuroclaro">
+            <input type="radio" name="modoescuroclaro" id="modoclaro" checked>
+            <label for="modoclaro">Modo Claro</label>
+            <input type="radio" name="modoescuroclaro" id="modoescuro">
+            <label for="modoescuro">Modo Escuro</label>
+        </section>
+    </section>
     <p>O DM Helper é uma ferramenta para mestres de RPG, projetada para facilitar a gestão de campanhas. Com ele, você pode calcular modificadores, rolagens de dados, definir iniciativas entre outras funcionalidades.</p>
     
      <!-- #region ===== Dados ===== -->
@@ -525,7 +542,7 @@
         <div class="npcinimigo">
             <section>
             <input type="text" class="inputficha" id="nome" placeholder="Nome do personagem">
-            <img id="deleteficha" src="https://images.icon-icons.com/37/PNG/512/delete_4219.png">
+            <img id="deleteficha" class="deleteficha" src="https://images.icon-icons.com/37/PNG/512/delete_4219.png">
             </section>
             <section id="gridficha">
                 <p id="pficha">Raça:</p>
@@ -598,8 +615,8 @@
         </div>
      </section>
      <!-- #endregion -->
-     <!-- #region ===== Convertor de Moedas ===== -->
-    <h1>CONVERTOR DE MOEDAS</h1>
+     <!-- #region ===== Conversor de Moedas ===== -->
+    <h1>CONVERSOR DE MOEDAS</h1>
     <p>No D&D existem diversas moedas, como Ouro (GP ou PO), Platina (PP) e prata (SP), esta ferramenta te ajuda a converter com facilidade essas diferentes moedas.</p>
     
     <section class="sectionconvertor">
@@ -624,8 +641,46 @@
     </section>
         <h1 class="resultadoconversao">...</h1>
     <!-- #endregion -->
-     
     <script>
+        //#region ===== Modo Escuro =====
+        const modoclaro = document.getElementById('modoclaro');
+        const modoescuro = document.getElementById('modoescuro');
+        const root = document.documentElement;
+        const deletebuttonstyle = document.getElementsByClassName('deleteficha');
+
+        function setTheme() {
+            if (modoescuro.checked) {
+                localStorage.setItem('theme', 'dark');
+                root.style.setProperty('--text-color', '#e2e2e2');
+                root.style.setProperty('--text-light', '#fcfcfc');
+                root.style.setProperty('--bg-color', '#424242');
+                root.style.setProperty('--border-color', '#555');
+                root.style.setProperty('--white', '#2c2c2c');
+                root.style.setProperty('--filter', 'invert(1)');
+            } else {
+                localStorage.setItem('theme', 'light');
+                root.style.setProperty('--text-color', '#333');
+                root.style.setProperty('--text-light', '#555');
+                root.style.setProperty('--bg-color', '#f4f4f4');
+                root.style.setProperty('--border-color', '#ccc');
+                root.style.setProperty('--white', 'white');
+                root.style.setProperty('--filter', 'none');
+            }
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                modoescuro.checked = true;
+            }
+            setTheme();
+        }
+
+        modoclaro.addEventListener('change', setTheme);
+        modoescuro.addEventListener('change', setTheme);
+
+        loadTheme();
+        //#endregion
         //#region ===== dados =====
         const normal = document.getElementById('normal');
         const vantagem = document.getElementById('vantagem');
@@ -738,7 +793,7 @@
             if (novoTempoRestante === '00:00:00') {
                 mostrartemporestante.style.color = 'red';
             } else {
-                mostrartemporestante.style.color = '#333';
+                mostrartemporestante.style.color = 'var(--text-color)';
             }
             temporestante.value = novoTempoRestante;
             mostrartemporestante.textContent = novoTempoRestante;
@@ -762,10 +817,9 @@
             const listainiciativa = document.getElementById('listainiciativa');
             const novoItem = document.createElement('div');
             novoItem.className = 'iteminiciativa';
-            novoItem.textContent = `${String(iniciativa).padStart(2, '0')} - ${nome}`;
-            novoItem.style.padding = '5px 0';
+            novoItem.textContent = `${String(iniciativa).padStart(2, '0')} - ${nome}`; 
+            novoItem.style.padding = '5px 0 5px 10px'; // Adicionado 10px de padding à esquerda
             listainiciativa.appendChild(novoItem);
-            // Ordenar a lista
             const itens = Array.from(listainiciativa.children);
             itens.sort((a, b) => {
                 const iniA = parseInt(a.textContent.split(' - ')[0]);
@@ -806,7 +860,7 @@
             iniciativanumber.value = total;
         });
         //#endregion
-        //#region ===== fundo animado =====
+        //#region ===== fundo animado ===== 
         const canvas = document.getElementById('fundo');
         const ctx = canvas.getContext('2d');
 
@@ -815,7 +869,7 @@
 
         const rects = [];
         for (let i = 0; i < 50; i++) {
-            const size = Math.random() * 75 + 20;
+            const size = Math.random() * 250 + 20;
             rects.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
@@ -844,7 +898,7 @@
         }
         animate();
         //#endregion
-        //#region ===== convertor de moedas =====
+        //#region ===== conversor de moedas =====
         const quantidade = document.getElementById('inputmoeda');
         const moedainicial = document.getElementById('moedainicial');
         const moedafinal = document.getElementById('moedafinal');
@@ -950,14 +1004,14 @@
             </section>
             <section id="gridficha2">
                 <section>
-                <input type="text" class="inputfichasubclasse1" id="inputsrt" placeholder="..." >
-                <p id="modificadorstr" class="modificadorficha"></p></section>
+                <input type="text" class="inputfichasubclasse1" id="inputstr" placeholder="..." >
+                <p id="modificadorstr1" class="modificadorficha"></p></section>
                 <section>
                 <input type="text" class="inputfichasubclasse1" id="inputdex" placeholder="..." >
-                <p id="modificadordex" class="modificadorficha"></p></section>
+                <p id="modificadordex1" class="modificadorficha"></p></section>
                 <section>
                 <input type="text" class="inputfichasubclasse1" id="inputcon" placeholder="..." >
-                <p id="modificadorcon" class="modificadorficha"></p></section>
+                <p id="modificadorcon1" class="modificadorficha"></p></section>
             </section>
             <section id="gridficha">
                 <p id="pficha">Int:</p>
@@ -967,13 +1021,13 @@
             <section id="gridficha2">
                 <section>
                 <input type="text" class="inputfichasubclasse1" id="inputint" placeholder="..." >
-                <p id="modificadorint" class="modificadorficha"></p></section>
+                <p id="modificadorint1" class="modificadorficha"></p></section>
                 <section>
                 <input type="text" class="inputfichasubclasse1" id="inputwis" placeholder="..." >
-                <p id="modificadorwis" class="modificadorficha"></p></section>
+                <p id="modificadorwis1" class="modificadorficha"></p></section>
                 <section>
                 <input type="text" class="inputfichasubclasse1" id="inputcha" placeholder="..." >
-                <p id="modificadorcha" class="modificadorficha"></p></section>
+                <p id="modificadorcha1" class="modificadorficha"></p></section>
             </section>
             <section id="gridficha1">
                 <p id="pficha">Desafio (XP):</p>
@@ -1006,17 +1060,25 @@
                     addHabilidadeBtn.parentElement.parentElement.appendChild(novaHabilidade);
                 });
 
-                const inputstr = novoNPC.querySelector('#inputsrt');
+                const inputstr = novoNPC.querySelector('#inputstr');
                 const inputdex = novoNPC.querySelector('#inputdex');
                 const inputcon = novoNPC.querySelector('#inputcon');
                 const inputint = novoNPC.querySelector('#inputint');
                 const inputwis = novoNPC.querySelector('#inputwis');
                 const inputcha = novoNPC.querySelector('#inputcha');
                 
-                inputstr.addEventListener('input', () => {
-                    const valor = parseInt(inputstr.value);
-                    const mod = isNaN(valor) ? '' : (Math.floor((valor - 10) / 2) >= 0 ? `+${Math.floor((valor - 10) / 2)}` : Math.floor((valor - 10) / 2));
-                    novoNPC.querySelector('#modificadorstr').textContent = mod;
+                const inputsatributos2 = [inputstr, inputdex, inputcon, inputint, inputwis, inputcha]
+
+                inputsatributos2.forEach(input => {
+                    input.addEventListener('input', () => {
+                        const valor = parseInt(input.value);
+                        const mod = isNaN(valor) ? '' : (Math.floor((valor - 10) / 2) >= 0 ? `+${Math.floor((valor - 10) / 2)}` : Math.floor((valor - 10) / 2));
+                        const modId = `modificador${input.id.slice(5)}`;
+                        const modElement = document.querySelector('#' + modId + '1');
+                        if (modElement) {
+                            modElement.textContent = mod;
+                        };
+                    });
                 });
 
                 containerNPC.appendChild(novoNPC);
