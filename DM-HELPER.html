@@ -102,6 +102,13 @@
             align-items: center;
             gap: 10px;
         }
+
+        .sectionvertical {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
         
         .sectionhorizontal {
             width: 100%;
@@ -300,15 +307,14 @@
         
         #npcinimigosection   {
             margin-top: 10px;
-            min-height: 25rem;
+            min-height: 30rem;
             flex-direction: column;
             overflow-y: auto;
             display: grid;
             gap: 10px;
             grid-template-columns: repeat(3, 1fr);
-            background-color: var(--white);
             padding: 10px;
-            border: 2px solid var(--border-color);
+            border: 4px solid var(--border-color);
             border-radius: var(--border-radius);
         }
         
@@ -334,7 +340,6 @@
             box-sizing: border-box;
         }
         .inputfichasubclasse {
-            margin: 5px;
             font-size: 12px;
             width: 93%;
             height: 2rem;
@@ -344,22 +349,11 @@
             box-sizing: border-box;
         }
         .inputfichasubclasse1 {
-            margin: 5px;
+            border: none;
             font-size: 12px;
-            width: 93%;
+            width: 30%;
             height: 2rem;
             padding: 0 5px;
-            border: none;
-            border-radius: 0;
-            box-sizing: border-box;
-        }
-        .inputfichasubclasse2 {
-            margin: 5px;
-            font-size: 12px;
-            width: 93%;
-            height: 2rem;
-            padding: 0 5px;
-            border: none;
             border-radius: 0;
             box-sizing: border-box;
         }
@@ -382,16 +376,32 @@
         .inputficha1 {
             height: 2rem;
             font-size: 12px;
-            margin: 5px;
             border: none;
             border-radius: 0;
             box-sizing: border-box;
         }
+        
+        .inputfichagrande {
+            height: 2rem;
+            width: 99.5%;
+            font-size: 12px;
+            margin-right: 15px;
+            border: none;
+            border-radius: 0;
+            box-sizing: border-box;
+        }
+
         #gridficha {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
         }
+
+        #gridficha2 {
+            display: flex;
+            gap: 10px;
+        }
+
         #gridficha1 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -404,6 +414,15 @@
             margin-right: 15px;
             cursor: pointer;
             float: right;
+        }
+        .modificadorficha {
+            width: 20px;
+            height: auto;
+            font-size: 12px;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
         }
     </style>
 </head>
@@ -514,19 +533,19 @@
                 <p id="pficha">Nível:</p>
             </section>
             <section id="gridficha">
-            <input type="text" class="inputfichasubclasse" placeholder=".....">
-            <input type="text" class="inputfichasubclasse" placeholder=".....">
-            <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
             </section>
             <section id="gridficha">
                 <p id="pficha">HP:</p>
                 <p id="pficha">CA:</p>
                 <p id="pficha">Deslocamento:</p>
             </section>
-            <section id="gridficha">
-            <input type="text" class="inputfichasubclasse" placeholder=".....">
-            <input type="text" class="inputfichasubclasse" placeholder=".....">
-            <input type="text" class="inputfichasubclasse2" placeholder="......">
+                <section id="gridficha">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
             </section>
             <hr id="hrnpc">
             <section id="gridficha">
@@ -534,29 +553,48 @@
                 <p id="pficha">Dex:</p>
                 <p id="pficha">Con:</p>
             </section>
-            <section id="gridficha">
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+            <section id="gridficha2">
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputstr" placeholder="..." >
+                <p id="modificadorstr" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputdex" placeholder="..." >
+                <p id="modificadordex" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputcon" placeholder="..." >
+                <p id="modificadorcon" class="modificadorficha"></p></section>
             </section>
             <section id="gridficha">
                 <p id="pficha">Int:</p>
                 <p id="pficha">Wis:</p>
                 <p id="pficha">Cha:</p>
             </section>
-            <section id="gridficha">
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
-                <input type="text" class="inputfichasubclasse1" placeholder="..." >
+            <section id="gridficha2">
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputint" placeholder="..." >
+                <p id="modificadorint" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputwis" placeholder="..." >
+                <p id="modificadorwis" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputcha" placeholder="..." >
+                <p id="modificadorcha" class="modificadorficha"></p></section>
             </section>
             <section id="gridficha1">
                 <p id="pficha">Desafio (XP):</p>
                 <p id="pficha">Linguagens:</p>
             </section>
             <section id="gridficha1">
-            <input type="text" class="inputficha1" placeholder=".....">
-            <input type="text" class="inputficha1" placeholder=".....">
+                <input type="text" class="inputficha1" placeholder=".....">
+                <input type="text" class="inputficha1" placeholder=".....">
+            </section>
+            <section class="sectionvertical">
+                <section>
+                <p id="pficha">Perícias, Proeficiencias e Habilidades</p>
+                <button id="adicionarhabilidade">+</button>
                 </section>
+                <input type="text" class="inputfichagrande" placeholder=".....">
+            </section>
         </div>
      </section>
      <!-- #endregion -->
@@ -836,7 +874,37 @@
         const botaoAdicionarNPC = document.getElementById('buttoniniciativa');
         const containerNPC = document.getElementById('npcinimigosection');
         const deleteficha = document.getElementById('deleteficha');
+        const adicionarhabilidade = document.getElementById('adicionarhabilidade');
 
+
+        const inputstr = document.getElementById('inputstr');
+        const inputdex = document.getElementById('inputdex');
+        const inputcon = document.getElementById('inputcon');
+        const inputint = document.getElementById('inputint');
+        const inputwis = document.getElementById('inputwis');
+        const inputcha = document.getElementById('inputcha');
+
+        const inputsatributos = [inputstr, inputdex, inputcon, inputint, inputwis, inputcha];
+
+        inputsatributos.forEach(input => {
+            input.addEventListener('input', () => {
+                const valor = parseInt(input.value);
+                const mod = isNaN(valor) ? '' : (Math.floor((valor - 10) / 2) >= 0 ? `+${Math.floor((valor - 10) / 2)}` : Math.floor((valor - 10) / 2));
+                const modId = `modificador${input.id.slice(5)}`;
+                const modElement = document.getElementById(modId);
+                if (modElement) {
+                    modElement.textContent = mod;
+                }
+            });
+        });
+
+        adicionarhabilidade.addEventListener('click', () => {
+            const novaHabilidade = document.createElement('input');
+            novaHabilidade.type = 'text';
+            novaHabilidade.className = 'inputfichagrande';
+            novaHabilidade.placeholder = '.....';
+            adicionarhabilidade.parentElement.parentElement.appendChild(novaHabilidade);
+        });
         deleteficha.addEventListener('click', () => {
             deleteficha.parentElement.parentElement.remove();
         });
@@ -850,59 +918,78 @@
                 const novoNPC = document.createElement('div');
                 novoNPC.className = 'npcinimigo';
                 novoNPC.innerHTML = `
-                    <section>
-                        <input type="text" class="inputficha" placeholder="Nome do personagem">
-                        <img class="deleteficha" src="https://images.icon-icons.com/37/PNG/512/delete_4219.png">
-                    </section>
-                    <section id="gridficha">
-                        <p id="pficha">Raça:</p>
-                        <p id="pficha">Classe:</p>
-                        <p id="pficha">Nível:</p>
-                    </section>
-                    <section id="gridficha">
-                        <input type="text" class="inputfichasubclasse" placeholder=".....">
-                        <input type="text" class="inputfichasubclasse" placeholder=".....">
-                        <input type="text" class="inputfichasubclasse" placeholder=".....">
-                    </section>
-                    <section id="gridficha">
-                        <p id="pficha">HP:</p>
-                        <p id="pficha">CA:</p>
-                        <p id="pficha">Deslocamento:</p>
-                    </section>
-                    <section id="gridficha">
-                        <input type="text" class="inputfichasubclasse" placeholder=".....">
-                        <input type="text" class="inputfichasubclasse" placeholder=".....">
-                        <input type="text" class="inputfichasubclasse2" placeholder="......">
-                    </section>
-                    <hr id="hrnpc">
-                    <section id="gridficha">
-                        <p id="pficha">Str:</p>
-                        <p id="pficha">Dex:</p>
-                        <p id="pficha">Con:</p>
-                    </section>
-                    <section id="gridficha">
-                        <input type="text" class="inputfichasubclasse1" placeholder="...">
-                        <input type="text" class="inputfichasubclasse1" placeholder="...">
-                        <input type="text" class="inputfichasubclasse1" placeholder="...">
-                    </section>
-                    <section id="gridficha">
-                        <p id="pficha">Int:</p>
-                        <p id="pficha">Wis:</p>
-                        <p id="pficha">Cha:</p>
-                    </section>
-                    <section id="gridficha">
-                        <input type="text" class="inputfichasubclasse1" placeholder="...">
-                        <input type="text" class="inputfichasubclasse1" placeholder="...">
-                        <input type="text" class="inputfichasubclasse1" placeholder="...">
-                    </section>
-                    <section id="gridficha1">
-                        <p id="pficha">Desafio (XP):</p>
-                        <p id="pficha">Linguagens:</p>
-                    </section>
-                    <section id="gridficha1">
-                        <input type="text" class="inputficha1" placeholder=".....">
-                        <input type="text" class="inputficha1" placeholder=".....">
-                    </section>
+                        <section>
+            <input type="text" class="inputficha" id="nome" placeholder="Nome do personagem">
+            <img class="deleteficha" src="https://images.icon-icons.com/37/PNG/512/delete_4219.png">
+            </section>
+            <section id="gridficha">
+                <p id="pficha">Raça:</p>
+                <p id="pficha">Classe:</p>
+                <p id="pficha">Nível:</p>
+            </section>
+            <section id="gridficha">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+            </section>
+            <section id="gridficha">
+                <p id="pficha">HP:</p>
+                <p id="pficha">CA:</p>
+                <p id="pficha">Deslocamento:</p>
+            </section>
+                <section id="gridficha">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+            </section>
+            <hr id="hrnpc">
+            <section id="gridficha">
+                <p id="pficha">Str:</p>
+                <p id="pficha">Dex:</p>
+                <p id="pficha">Con:</p>
+            </section>
+            <section id="gridficha2">
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputsrt" placeholder="..." >
+                <p id="modificadorstr" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputdex" placeholder="..." >
+                <p id="modificadordex" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputcon" placeholder="..." >
+                <p id="modificadorcon" class="modificadorficha"></p></section>
+            </section>
+            <section id="gridficha">
+                <p id="pficha">Int:</p>
+                <p id="pficha">Wis:</p>
+                <p id="pficha">Cha:</p>
+            </section>
+            <section id="gridficha2">
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputint" placeholder="..." >
+                <p id="modificadorint" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputwis" placeholder="..." >
+                <p id="modificadorwis" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputcha" placeholder="..." >
+                <p id="modificadorcha" class="modificadorficha"></p></section>
+            </section>
+            <section id="gridficha1">
+                <p id="pficha">Desafio (XP):</p>
+                <p id="pficha">Linguagens:</p>
+            </section>
+            <section id="gridficha1">
+                <input type="text" class="inputficha1" placeholder=".....">
+                <input type="text" class="inputficha1" placeholder=".....">
+            </section>
+            <section class="sectionvertical">
+                <section>
+                <p id="pficha">Perícias, Proeficiencias e Habilidades</p>
+                <button id="adicionarhabilidade">+</button>
+                </section>
+                <input type="text" class="inputfichagrande" placeholder=".....">
+            </section>
                 `;
                 
                 const deleteBtn = novoNPC.querySelector('.deleteficha');
@@ -910,6 +997,28 @@
                     novoNPC.remove();
                 });
                 
+                const addHabilidadeBtn = novoNPC.querySelector('#adicionarhabilidade');
+                addHabilidadeBtn.addEventListener('click', () => {
+                    const novaHabilidade = document.createElement('input');
+                    novaHabilidade.type = 'text';
+                    novaHabilidade.className = 'inputfichagrande';
+                    novaHabilidade.placeholder = '.....';
+                    addHabilidadeBtn.parentElement.parentElement.appendChild(novaHabilidade);
+                });
+
+                const inputstr = novoNPC.querySelector('#inputsrt');
+                const inputdex = novoNPC.querySelector('#inputdex');
+                const inputcon = novoNPC.querySelector('#inputcon');
+                const inputint = novoNPC.querySelector('#inputint');
+                const inputwis = novoNPC.querySelector('#inputwis');
+                const inputcha = novoNPC.querySelector('#inputcha');
+                
+                inputstr.addEventListener('input', () => {
+                    const valor = parseInt(inputstr.value);
+                    const mod = isNaN(valor) ? '' : (Math.floor((valor - 10) / 2) >= 0 ? `+${Math.floor((valor - 10) / 2)}` : Math.floor((valor - 10) / 2));
+                    novoNPC.querySelector('#modificadorstr').textContent = mod;
+                });
+
                 containerNPC.appendChild(novoNPC);
             });
         }
