@@ -14,6 +14,17 @@
             transition: 0.25s ease-in-out all;
         }
 
+        @media (min-width: 1px) and (max-width: 1250px){
+            .npcinimigo {
+            width: 100%;
+            }
+        }
+        @media (min-width: 1251px) and (max-width: 5000px) {
+            .npcinimigo {
+            width: 24.3%;
+            }
+        }
+
         :root {
             --primary-color: #007BFF;
             --primary-hover: #005ec2;
@@ -202,6 +213,7 @@
             height: 100vh;
             z-index: -1;
             opacity: 0.4;
+            transition: none;
         }
         
         .checkbox {
@@ -326,19 +338,18 @@
         
         #npcinimigosection   {
             margin-top: 10px;
-            min-height: 30rem;
-            flex-direction: column;
-            overflow-y: auto;
-            display: grid;
+            min-height: 26rem;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            overflow: auto;
             gap: 10px;
-            grid-template-columns: repeat(4, 1fr);
             padding: 10px;
             border: 4px solid var(--border-color);
             border-radius: var(--border-radius);
         }
         
         .npcinimigo {
-            width: 100%;
             height: 100%;
             border: 2px solid;
             background-color: var(--white);
@@ -393,6 +404,7 @@
             color: var(--text-light);
         }
         .inputficha1 {
+            width: 100%;
             height: 2rem;
             font-size: 14px;
             border: none;
@@ -1164,6 +1176,11 @@
                 containerNPC.appendChild(novoNPC);
             });
         }
+        //#endregion
+        //#region ===== Porte para celular =====
+        let isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (isMobile = 'true') {document.getElementsByClassName('npcinimigo').style.width}
+        else if (isMobile = 'false') {document.getElementsByClassName('npcinimigo').style.width = '25%';}
         //#endregion
     </script>
 </body>
