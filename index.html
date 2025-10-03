@@ -16,7 +16,10 @@
 
         @media (min-width: 1px) and (max-width: 1250px){
             .npcinimigo {
-            width: 100%;
+                width: 100%;
+            }
+            canvas {
+                display: none;
             }
         }
         @media (min-width: 1251px) and (max-width: 5000px) {
@@ -583,7 +586,7 @@
      <section id="npcinimigosection">
         <div class="npcinimigo">
             <section>
-            <input type="text" class="inputficha" id="nome" placeholder="Nome do personagem">
+            <input type="text" class="inputficha" id="nome" placeholder="Nome">
             <select name="condicoes" class="condicoes">
                 <option value="Normal">Normal</option>
                 <option value="Surdo">Surdo</option>
@@ -1040,7 +1043,7 @@
                 novoNPC.className = 'npcinimigo';
                 novoNPC.innerHTML = `
                         <section>
-            <input type="text" class="inputficha" id="nome" placeholder="Nome do personagem">
+            <input type="text" class="inputficha" id="nome" placeholder="Nome">
             <select name="condicoes" class="condicoes">
                 <option value="Normal">Normal</option>
                 <option value="Surdo">Surdo</option>
