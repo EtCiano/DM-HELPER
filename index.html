@@ -172,7 +172,7 @@
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 10px;
-            width: 50rem;
+            max-width: 50rem;
             height: 9rem;
         }
         
@@ -234,7 +234,7 @@
         }
         
         .dadosextra {
-            width: 43rem;
+            max-width: 43rem;
             height: 5.5rem;
             margin-top: 10px;
             justify-content: flex-end;
@@ -254,7 +254,7 @@
         }
         
         .tempogrande {
-            width: 26rem;
+            max-width: 26rem;
             height: 12rem;
         }
         
@@ -273,13 +273,13 @@
         }
         
         .iniciativainput {
-            width: 9rem;
+            width: 27%;
             height: 3rem;
             font-size: 22px;
             vertical-align: top;
         }
         
-        #nomeiniciativa { width: 20rem; }
+        #nomeiniciativa { width: 43%; }
         
         .iniciativa {
             width: auto;
@@ -292,17 +292,18 @@
         #listainiciativa {
             border: 2px solid var(--border-color);
             border-radius: var(--border-radius);
-            width: 69.5%;
+            width: 65%;
             min-height: 4.4rem;
             flex-direction: column;
             overflow-y: auto;
             background-color: var(--white);
             padding: 10px;
+            display: flex;
             align-items: flex-start;
         }
         
         #proximoiniciativa {
-            width: 25%;
+            width: 29%;
             height: 5.8rem;
             font-size: 16px;
             padding: 0 10px;
@@ -324,9 +325,13 @@
         }
         .inciativasectionmenor {
             flex-direction: column; 
-            align-self: flex-start;
+            align-items: flex-start;
+        }
+        #modificadoriniciativa, #dadoiniciativa {
+            width: 75%;
         }
         .iniciativamaior {
+            max-width: 50rem;
             display: flex;
             gap: 10px;
         }
@@ -335,10 +340,6 @@
             gap: 10px;
             align-items: center;
         }
-        .lista {
-            display: flex;
-        }
-        
         #npcinimigosection   {
             margin-top: 10px;
             min-height: 26rem;
