@@ -160,14 +160,21 @@
                 <input type="text" class="inputfichasubclasse" placeholder=".....">
             </section>
             <section id="gridficha">
-                <p id="pficha">HP:</p>
+                <section>
+                <p id="pficha1">HP:</p>
+                <p id="pficha1">Máx.:</p>
+                </section>
                 <p id="pficha">CA:</p>
                 <p id="pficha">Deslocamento:</p>
             </section>
-                <section id="gridficha">
-                <input type="text" class="inputfichasubclasse" placeholder=".....">
-                <input type="text" class="inputfichasubclasse" placeholder=".....">
-                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <section id="gridficha">    
+                        <section>
+                        <input type="text" class="inputfichasubclasse2" placeholder="...">
+                        <strong>/</strong>
+                        <input type="text" class="inputfichasubclasse2" placeholder="...">
+                    </section>
+                    <input type="text" class="inputfichasubclasse" placeholder=".....">
+                    <input type="text" class="inputfichasubclasse" placeholder=".....">
             </section>
             <hr id="hrnpc">
             <section id="gridficha">
@@ -210,12 +217,23 @@
                 <input type="text" class="inputficha1" placeholder=".....">
                 <input type="text" class="inputficha1" placeholder=".....">
             </section>
-            <section class="sectionvertical">
-                <section>
-                <p id="pficha">Perícias, Proeficiencias e Habilidades</p>
-                <button id="adicionarhabilidade">+</button>
+            <section style="align-items: flex-start;">
+                <section class="sectionverticalficha">
+                    <section class="sectionespecifica">
+                        <button id="adicionarhabilidade">+</button>
+                        <p id="pficha" style="font-size: 12px;">Proeficiencias e Habilidades</p>
+                        </section>
+                        <input type="text" class="inputfichagrande" placeholder=".....">
                 </section>
-                <input type="text" class="inputfichagrande" placeholder=".....">
+                <section class="sectionverticalficha">
+                    <section class="sectionespecifica">
+                        <button id="adicionaritem">+</button>
+                        <p id="pficha">Itens</p>
+                        </section>
+                        <select name="item" class="item" id="selectitem">
+                            <option value=""></option>
+                        </select>
+                </section>
             </section>
         </div>
      </section>
