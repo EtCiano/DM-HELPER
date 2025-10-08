@@ -1,0 +1,465 @@
+* {
+    transition: 0.25s ease-in-out all;
+}
+
+@media (min-width: 1px) and (max-width: 1250px){
+    .npcinimigo {
+        width: 100%;
+    }
+    canvas {
+        display: none;
+    }
+}
+@media (min-width: 1251px) and (max-width: 5000px) {
+    .npcinimigo {
+    width: 24.3%;
+    }
+}
+
+:root {
+    --primary-color: #007BFF;
+    --primary-hover: #005ec2;
+    --border-color: #ccc;
+    --border-radius: 5px;
+    --text-color: #333;
+    --text-light: #555;
+    --bg-color: #f4f4f4;
+    --white: white;
+}
+
+body {
+    font-family: "Ubuntu", sans-serif;
+    margin: 20px;
+    background-color: var(--bg-color);
+}
+
+h1, h2 { color: var(--text-color); }
+
+p {
+    width: 60rem;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-light);
+}
+
+/* Botões */
+button, .iniciativa, .adicionartempo {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;    
+    transition: 0.2s ease-in-out;
+}
+
+button:hover, .iniciativa:hover, .adicionartempo:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Inputs */
+input, .tempoinput, .iniciativainput, .inputdado {
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    padding: 0 5px;
+    background-color: var(--white);
+    color: var(--text-color)
+}
+
+.inputconvertor {
+    width: 150px;
+    height: 50px;
+    font-size: 18px;
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+}
+
+.resultadoconversao {
+    width: 41.4rem;
+    height: 3rem;
+    font-size: 22px;
+    text-align: center;
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    display: flex;
+    border: 2px solid var(--border-color);
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    margin: 0;
+}
+
+.sectionconvertor {
+    width: 42rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.inputdado {
+    width: 34%;
+    height: 100%;
+    font-size: 22px;
+    padding-left: 5px;
+}
+
+/* Flex containers */
+section, .minisection, .sectionhorizontal {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tempomenorainda {
+    height: 50px;
+}
+
+.tempomenor {
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionvertical {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.sectionhorizontal {
+    width: 100%;
+    padding: 0;
+    margin-top: 12.5px;
+    align-items: flex-start;
+}
+
+.tempomedio, .vantagens, .iniciativagrandesection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.iniciativagrandesection {
+    align-items: flex-start;
+    gap: 0;
+}
+.tempopequeno {
+    flex-direction: row;
+}
+.labeltempo {
+    align-self: flex-start;
+}
+.inciativasectionmenor {
+    flex-direction: column; 
+    align-self: flex-start;
+}
+/* Outros */
+.dados {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    max-width: 50rem;
+    height: 9rem;
+}
+
+button.dadobutton, h1.resultado {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    padding: 0;
+    box-sizing: border-box;
+}
+#dadoiniciativa {
+    padding: 10px 15px;
+    font-size: 16px;
+    width: auto;
+    height: 6rem;
+}
+
+h1.resultado {
+    margin: 0;
+    text-align: center;
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    display: flex;
+    border: 2px solid var(--border-color);
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+}
+
+hr {
+    margin: 20px 0 2px;
+    border-radius: 20px;
+    border: 2.5px solid var(--border-color);
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0.4;
+    transition: none;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+label {
+    color: var(--text-color);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    line-height: 1.2;
+}
+
+.dadosextra {
+    max-width: 43rem;
+    height: 5.5rem;
+    margin-top: 10px;
+    justify-content: flex-end;
+}
+
+.vantagens {
+    width: 35%;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.tempoinput {
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.tempogrande {
+    max-width: 26rem;
+    height: 12rem;
+}
+
+.adicionartempo {
+    padding: 10px 15px;
+    font-size: 16px;
+    width: auto;
+    height: 80%;
+    align-self: flex-end;
+}
+
+.tempotext {
+    font-size: 24px;
+    color: var(--text-color);
+    align-self: center;
+}
+
+.iniciativainput {
+    width: 27%;
+    height: 3rem;
+    font-size: 22px;
+    vertical-align: top;
+}
+
+#nomeiniciativa { width: 43%; }
+
+.iniciativa {
+    width: auto;
+    height: 3rem;
+    font-size: 16px;
+    padding: 0 10px;
+    vertical-align: top;
+}
+
+#listainiciativa {
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    width: 65%;
+    min-height: 4.4rem;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color: var(--white);
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+}
+
+#proximoiniciativa {
+    width: 29%;
+    height: 5.8rem;
+    font-size: 16px;
+    padding: 0 10px;
+    vertical-align: top;
+    align-self: flex-start;
+}
+
+.iteminiciativa {
+    width: 97.5%;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+.current-turn {
+    border-radius: var(--border-radius);
+    background-color: var(--primary-hover);
+    color: var(--text-color);
+    font-weight: bold;
+}
+.inciativasectionmenor {
+    flex-direction: column; 
+    align-items: flex-start;
+}
+#modificadoriniciativa, #dadoiniciativa {
+    width: 75%;
+}
+.iniciativamaior {
+    max-width: 50rem;
+    display: flex;
+    gap: 10px;
+}
+.iniciativasection {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+#npcinimigosection   {
+    margin-top: 10px;
+    min-height: 26rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    overflow: auto;
+    gap: 10px;
+    padding: 10px;
+    border: 4px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.npcinimigo {
+    height: 100%;
+    border: 2px solid;
+    background-color: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 10px;
+    box-sizing: border-box;
+}
+.inputficha {
+    margin: 5px;
+    margin-bottom: 15px;
+    width: 97%;
+    height: 2rem;
+    font-size: 16px;
+    padding: 0 5px;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+.inputfichasubclasse {
+    font-size: 14px;
+    width: 93%;
+    height: 2rem;
+    padding: 0 5px;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+.inputfichasubclasse1 {
+    border: none;
+    font-size: 14px;
+    width: 30%;
+    height: 2rem;
+    padding: 0 5px;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+hr#hrnpc {
+    margin: 0;
+    margin-bottom: 10px;
+    border: 1.5px solid var(--border-color);
+}
+#pficha {
+    text-align: center;
+    display: inline;
+    font-weight: bold;
+    width: auto;
+    text-align: start;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: var(--text-light);
+}
+.inputficha1 {
+    width: 100%;
+    height: 2rem;
+    font-size: 14px;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+
+.inputfichagrande {
+    height: 2rem;
+    width: 99.5%;
+    font-size: 12px;
+    margin-right: 15px;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+
+#gridficha {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+#gridficha2 {
+    display: flex;
+    gap: 10px;
+}
+
+#gridficha1 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+#deleteficha, .deleteficha {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    cursor: pointer;
+    float: right;
+}
+.modificadorficha {
+    width: 20px;
+    height: auto;
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+}
+.deleteficha {
+    filter: var(--filter);
+}
+.condicoes {
+    margin: 5px;
+    margin-bottom: 15px;
+    width: 70%;
+    height: 2rem;
+    font-size: 16px;
+    padding: 0 5px;
+    border: none;
+    border-radius: 1px;
+    background-color: var(--white);
+    color: var(--text-color);
+    box-sizing: border-box;
+}

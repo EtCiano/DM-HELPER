@@ -1,0 +1,262 @@
+
+<!DOCTYPE html> <!-- site para inspiração : https://bibliotecaelfica.org/2023/01/15/dd-5e-regras-basicas-dos-jogadores -->
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM HELPER</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/6545/6545894.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="dm-helper.css">
+</head>
+<body>
+    <canvas id="fundo"></canvas>
+    <section>
+        <h1>DUNGEON MASTER HELPER</h1>
+        <section id="modoescuroclaro">
+            <input type="radio" name="modoescuroclaro" id="modoclaro" checked>
+            <label for="modoclaro">Modo Claro</label>
+            <input type="radio" name="modoescuroclaro" id="modoescuro">
+            <label for="modoescuro">Modo Escuro</label>
+        </section>
+    </section>
+    <p>O DM Helper é uma ferramenta para mestres de RPG, projetada para facilitar a gestão de campanhas. Com ele, você pode calcular modificadores, rolagens de dados, definir iniciativas entre outras funcionalidades.</p>
+    
+     <!-- #region ===== Dados ===== -->
+    <hr>
+    <h1>DADOS</h1>
+    <section class="dados">
+        <button class="dadobutton" id="dado1">d4</button>
+        <button class="dadobutton" id="dado2">d6</button>
+        <button class="dadobutton" id="dado3">d8</button>
+        <button class="dadobutton" id="dado4">d10</button>
+        <button class="dadobutton" id="dado5">d12</button>
+        <button class="dadobutton" id="dado6">d20</button>
+        <button class="dadobutton" id="dado7">d100</button>
+        <h1 class="resultado" id="resultado1">...</h1>
+        <h1 class="resultado" id="resultado2">...</h1>
+        <h1 class="resultado" id="resultado3">...</h1>
+        <h1 class="resultado" id="resultado4">...</h1>
+        <h1 class="resultado" id="resultado5">...</h1>
+        <h1 class="resultado" id="resultado6">...</h1>
+        <h1 class="resultado" id="resultado7">...</h1>
+        </section>
+        <section class="dadosextra">
+        <input type="number" placeholder="quantidade" class="inputdado" id="input">
+        <input type="number" id="modificador" class="inputdado" placeholder="modificador">
+        <section class="vantagens">
+        <section class="minisection"><label for="normal">Normal: </label>
+        <input type="radio" class="checkbox" id="normal" name="tipo" checked></section>
+        <section class="minisection"><label for="vantagem">Vantagem: </label>
+        <input type="radio" class="checkbox" id="vantagem" name="tipo"></section>
+        <section class="minisection"><label for="desvantagem">Desvantagem: </label>
+        <input type="radio" class="checkbox" id="desvantagem" name="tipo"></section>
+        </section>
+        </section>
+        <hr>
+     <!-- #endregion --> 
+     <!-- #region ===== tempo dos Turnos ===== -->
+    <h1>TEMPO DOS TURNOS</h1>
+    <p>Em D&D, uma mecanica essencial é que cada turno em combate tem a duração de 6 segundos, isso é essencial levando em conta que há magias e ataques que duram determinado tempo ou que precisam ser antecipadas por um certo período, como 1 minuto (10 turnos) de concentração para usar uma magia específica.</p>
+    
+    <section class="tempogrande">
+    <section class="tempomedio">
+        <section class="tempopequeno">
+            <section class="tempomenor">
+                <label for="tempoatual" class="labeltempo">Tempo atual</label>
+            <section class="tempomenorainda">
+                <input class="tempoinput" type="time" id="tempoatual" step="1" value="00:00:00">
+                <h1 class="tempotext">:</h1>
+                <h1 class="tempotext" id="mostrartempoatual">00:00:00</h1>
+                </section>
+            </section>
+        </section>
+        <section class="tempopequeno">
+            <section class="tempomenor">
+                <label for="temporestante" class="labeltempo">Tempo restante</label>
+            <section class="tempomenorainda">
+                <input class="tempoinput" type="time" id="temporestante" step="1" value="00:00:00">
+                <h1 class="tempotext">:</h1>
+                <h1 class="tempotext" id="mostrartemporestante">00:00:00</h1>
+                </section>
+            </section>
+        </section>
+    </section>
+    
+    <button class="adicionartempo" id="adicionarturno">Adicionar 1 turno</button>
+    </section>
+    <hr>
+    <!-- #endregion -->
+     <!-- #region ===== Lista de Iniciativa ===== -->
+    <h1>LISTA DE INICIATIVA</h1>
+    <p>Em D&D, a iniciativa determina a ordem em que os personagens e criaturas, o mestre pode usar essa ferramenta para fazer a lista para organizar a ordem dos turnos durante o combate.</p>
+    <section class="iniciativamaior">
+    <section class="iniciativagrandesection">
+        <section class="iniciativasection">
+        <input type="number" class="iniciativainput" id="iniciativanumber" placeholder="iniciativa">
+        <input type="text" class="iniciativainput" id="nomeiniciativa" placeholder="nome do jogador/personagem">
+        <button class="iniciativa" id="enviariniciativa">Adicionar</button>
+        <button class="iniciativa" id="limpariniciativa">Limpar</button>
+        </section>
+        <section class="sectionhorizontal">
+            <section class="lista" id="listainiciativa"></section>
+            <button id="proximoiniciativa">Proximo</button>
+        </section>
+        
+    </section>
+    <section class="inciativasectionmenor">
+        <button id="dadoiniciativa">d20 de iniciativa</button>
+        <input type="number" class="iniciativainput" id="modificadoriniciativa" placeholder="modificador"> 
+    </section>
+    </section>
+    <hr>
+    <!-- #endregion -->
+     <!-- #region ===== Inimigos e/ou NPCs ===== --> 
+     <h1>INIMIGOS E NPCS</h1>
+     <p>Mantenha a manutenção e a organização dos NPCs e Inimigos do jogo usando essa ferramenta</p>
+     <button id="buttoniniciativa" class="iniciativa">Adicionar NPC ou Inimigo</button>
+     <button id="limparnpcs" class="iniciativa">Limpar</button>
+     <section id="npcinimigosection">
+        <div class="npcinimigo">
+            <section>
+            <input type="text" class="inputficha" id="nome" placeholder="Nome">
+            <select name="condicoes" class="condicoes">
+                <option value="Normal">Normal</option>
+                <option value="Surdo">Surdo</option>
+                <option value="Rastreado">Rastreado</option>
+                <option value="Possuído">Possuído</option>
+                <option value="Petrificado">Petrificado</option>
+                <option value="Paralisado">Paralisado</option>
+                <option value="Marcado">Marcado</option>
+                <option value="Invisível">Invisível</option>
+                <option value="Inconsciente">Inconsciente</option>
+                <option value="Incapacitado">Incapacitado</option>
+                <option value="Exaustão">Exaustão</option>
+                <option value="Escondido">Escondido</option>
+                <option value="Envenenado">Envenenado</option>
+                <option value="Enfeitiçado">Enfeitiçado</option>
+                <option value="Dominado">Dominado</option>
+                <option value="Desafiado">Desafiado</option>
+                <option value="Contido">Contido</option>
+                <option value="Confuso">Confuso</option>
+                <option value="Cego">Cego</option>
+                <option value="Caído">Caído</option>
+                <option value="Atordoado">Atordoado</option>
+                <option value="Amedrontado">Amedrontado</option>
+                <option value="Agarrado">Agarrado</option>
+            </select>
+            <img id="deleteficha" class="deleteficha" src="https://images.icon-icons.com/37/PNG/512/delete_4219.png">
+            </section>
+            <section id="gridficha">
+                <p id="pficha">Raça:</p>
+                <p id="pficha">Classe:</p>
+                <p id="pficha">Nível:</p>
+            </section>
+            <section id="gridficha">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+            </section>
+            <section id="gridficha">
+                <p id="pficha">HP:</p>
+                <p id="pficha">CA:</p>
+                <p id="pficha">Deslocamento:</p>
+            </section>
+                <section id="gridficha">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+                <input type="text" class="inputfichasubclasse" placeholder=".....">
+            </section>
+            <hr id="hrnpc">
+            <section id="gridficha">
+                <p id="pficha">Str:</p>
+                <p id="pficha">Dex:</p>
+                <p id="pficha">Con:</p>
+            </section>
+            <section id="gridficha2">
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputstr" placeholder="..." >
+                <p id="modificadorstr" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputdex" placeholder="..." >
+                <p id="modificadordex" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputcon" placeholder="..." >
+                <p id="modificadorcon" class="modificadorficha"></p></section>
+            </section>
+            <section id="gridficha">
+                <p id="pficha">Int:</p>
+                <p id="pficha">Wis:</p>
+                <p id="pficha">Cha:</p>
+            </section>
+            <section id="gridficha2">
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputint" placeholder="..." >
+                <p id="modificadorint" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputwis" placeholder="..." >
+                <p id="modificadorwis" class="modificadorficha"></p></section>
+                <section>
+                <input type="text" class="inputfichasubclasse1" id="inputcha" placeholder="..." >
+                <p id="modificadorcha" class="modificadorficha"></p></section>
+            </section>
+            <section id="gridficha1">
+                <p id="pficha">Desafio (XP):</p>
+                <p id="pficha">Linguagens:</p>
+            </section>
+            <section id="gridficha1">
+                <input type="text" class="inputficha1" placeholder=".....">
+                <input type="text" class="inputficha1" placeholder=".....">
+            </section>
+            <section class="sectionvertical">
+                <section>
+                <p id="pficha">Perícias, Proeficiencias e Habilidades</p>
+                <button id="adicionarhabilidade">+</button>
+                </section>
+                <input type="text" class="inputfichagrande" placeholder=".....">
+            </section>
+        </div>
+     </section>
+     <!-- #endregion -->
+     <!-- #region ===== Conversor de Moedas ===== -->
+    <h1>CONVERSOR DE MOEDAS</h1>
+    <p>No D&D existem diversas moedas, como Ouro (GP ou PO), Platina (PP) e prata (SP), esta ferramenta te ajuda a converter com facilidade essas diferentes moedas.</p>
+    
+    <section class="sectionconvertor">
+        <input type="number" placeholder="quantidade" class="inputconvertor" id="inputmoeda">
+        <h1>de</h1>
+        <select class="inputconvertor" id="moedainicial">
+            <option value="PP">Platina (PP)</option>
+            <option value="GP" selected>Ouro (GP)</option>
+            <option value="EP">Eletro (EP)</option>
+            <option value="SP">Prata (SP)</option>
+            <option value="CP">Cobre (CP)</option>
+        </select>
+        <h1>para</h1>
+        <select class="inputconvertor" id="moedafinal">
+            <option value="PP">Platina (PP)</option>
+            <option value="GP" selected>Ouro (GP)</option>
+            <option value="EP">Eletro (EP)</option>
+            <option value="SP">Prata (SP)</option>
+            <option value="CP">Cobre (CP)</option>
+        </select>
+        <button class="iniciativa" id="convertermoeda">Converter</button>
+    </section>
+        <h1 class="resultadoconversao">...</h1>
+    <!-- #endregion -->
+     <!-- #region ===== Outros ===== -->
+        <h1>OUTRAS FERRAMENTAS</h1>
+        <p>Essas são algumas outras ferramentas que são interessantes para um DM usar.</p>
+     <!-- #endregion -->
+    <script src="js/tema.js"></script>
+    <script src="js/dados.js"></script>
+    <script src="js/tempo.js"></script>
+    <script src="js/iniciativa.js"></script>
+    <script src="js/fundo.js"></script>
+    <script src="js/moedas.js"></script>
+    <script src="js/npcs.js"></script>
+</body>
+
+</html>
