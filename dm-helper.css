@@ -9,10 +9,16 @@
     canvas {
         display: none;
     }
+    .sectionespecifica {
+        height: 21px;
+    }
 }
 @media (min-width: 1251px) and (max-width: 5000px) {
     .npcinimigo {
     width: 24.3%;
+    }
+    .sectionespecifica {
+        height: 36px;
     }
 }
 
@@ -127,6 +133,21 @@ section, .minisection, .sectionhorizontal {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+}
+.sectionverticalficha {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+    gap: 10px;
+}
+.item {
+    height: 2rem;
+    width: 100%;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--white);
+    color: var(--text-color);
 }
 
 .sectionhorizontal {
@@ -332,6 +353,7 @@ label {
     margin-top: 10px;
     min-height: 26rem;
     display: flex;
+    align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
     overflow: auto;
@@ -379,6 +401,15 @@ label {
     border-radius: 0;
     box-sizing: border-box;
 }
+.inputfichasubclasse2 {
+    border: none;
+    font-size: 14px;
+    width: 30%;
+    height: 2rem;
+    padding: 0 5px;
+    border-radius: 0;
+    box-sizing: border-box;
+}
 hr#hrnpc {
     margin: 0;
     margin-bottom: 10px;
@@ -389,6 +420,17 @@ hr#hrnpc {
     display: inline;
     font-weight: bold;
     width: auto;
+    text-align: start;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: var(--text-light);
+}
+#pficha1 {
+    text-align: center;
+    display: inline;
+    font-weight: bold;
+    width: 42%;
     text-align: start;
     margin: 0;
     padding: 0;
@@ -419,6 +461,13 @@ hr#hrnpc {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
+
+
+strong {
+    color: var(--text-color);
+    font-weight: bold;
+}
+
 
 #gridficha2 {
     display: flex;
